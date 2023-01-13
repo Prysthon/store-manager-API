@@ -9,7 +9,7 @@ const { productsService } = require('./../../../src/services');
 
 const { productsController } = require('./../../../src/controllers');
 
-const { resultsFindAll, resultsFindById, errorFindById } = require('./mocks/productsController.mock');
+const { resultsFindAll, resultsFindById, errorFindById, resultsNewProductInsert } = require('./mocks/productsController.mock');
 
 describe('Testando Controller de Produtos', function () {
   describe('Requisito 01 - listar todos os produtos e produto por Id', function () {
@@ -67,7 +67,31 @@ describe('Testando Controller de Produtos', function () {
       // Assert
 
       expect(res.status).to.have.been.calledWith(404);
-      expect(res.json).to.have.been.calledWith(errorFindById.message);
+      expect(res.json).to.have.been.calledWith({ message: errorFindById.message });
+    });
+  });
+
+  describe('Requisito 03 -  Cadastrar um novo produto', function () {
+    it('Está retornando o status 201 com o cadastro do produto', async function () {
+      // Arrange
+      const res = {};
+      const req = {
+        body: {
+          name: 'produtoX',
+        },
+      };
+
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub().returns();
+
+      sinon.stub(productsService, 'insertProduct').resolves(resultsNewProductInsert);
+      // Act
+
+      await productsController.insertProduct(req, res);
+      // Assert
+
+      expect(res.status).to.have.been.calledWith(201);
+      expect(res.json).to.have.been.calledWith(resultsNewProductInsert.message);
     });
   });
 

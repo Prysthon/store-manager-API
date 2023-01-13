@@ -1,1 +1,16 @@
-[]
+[
+  {
+    "_id": "075c1137-cbea-4369-aca3-28c1ae99277f",
+    "colId": "70d525df-578a-46c7-8cf9-4df11824f7d0",
+    "containerId": "",
+    "name": "R1",
+    "url": "{{host}}/products/",
+    "method": "GET",
+    "sortNum": 10000,
+    "created": "2023-01-13T21:33:15.136Z",
+    "modified": "2023-01-13T21:33:33.798Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  }
+]

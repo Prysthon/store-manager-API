@@ -5,7 +5,7 @@ const connection = require('../../../src/models/connection');
 
 const { productsModel } = require('../../../src/models');
 
-const { products, productWithId } = require('./mocks/productsModels.mock');
+const { products, productWithId, generatedProductId, productName } = require('./mocks/productsModels.mock');
 
 describe('Testando Model de Produtos', function () {
   describe('Requisito 01 - listar todos os produtos e produto por Id', function () {
@@ -34,6 +34,17 @@ describe('Testando Model de Produtos', function () {
       const result = await productsModel.findById(expectedId);
       // Assert
       expect(result).to.be.equal(undefined);
+    });
+  });
+
+  describe('Requisito 03 - cadastrar um novo produto', function () {
+    it('Está cadastrando um produto e retornando um id', async function () {
+      // Arrange
+      sinon.stub(connection, 'execute').resolves([generatedProductId]);
+      // Act
+      const result = await productsModel.insertProduct(productName);
+      // Assert
+      expect(result).to.be.equal(generatedProductId.insertId);
     });
   });
 

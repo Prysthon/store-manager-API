@@ -5,7 +5,7 @@ const { productsModel } = require('../../../src/models');
 
 const { productsService } = require('./../../../src/services');
 
-const { products, productFindById } = require('./mocks/productsServices.mock');
+const { products, productFindById, productName } = require('./mocks/productsServices.mock');
 
 describe('Testando Service de Produtos', function () {
   describe('Requisito 01 - listar todos os produtos e produto por Id', function () {
@@ -37,6 +37,19 @@ describe('Testando Service de Produtos', function () {
       // Assert
       expect(result.type).to.be.equal('PRODUCT_NOT_FOUND');
       expect(result.message).to.be.equal('Product not found');
+    });
+  });
+
+  describe('Requisito 03 - Cadastrar um novo produto', function () {
+    it('Está enviando um objeto com id e produto no message', async function () {
+      // Arrange
+      const expectedId = 4;
+      sinon.stub(productsModel, 'insertProduct').resolves(expectedId);
+      // Act
+      const result = await productsService.insertProduct(productName);
+      // Assert
+      expect(result.type).to.be.equal(null);
+      expect(result.message).to.be.deep.equal({ id: expectedId, name: productName });
     });
   });
 

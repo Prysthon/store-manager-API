@@ -14,6 +14,11 @@ const product = {
   name: "Martelo de Thor"
 };
 
+const newProduct = {
+  id: 4,
+  name: 'produtoX'
+};
+
 const resultsFindAll = {
   type: null,
   message: products
@@ -27,10 +32,16 @@ const resultsFindById = {
 const errorFindById = {
   type: 'PRODUCT_NOT_FOUND',
   message: 'Product not found'
-}
+};
+
+const resultsNewProductInsert = {
+  type: null,
+  message: newProduct,
+};
 
 module.exports = {
   resultsFindAll,
   resultsFindById,
   errorFindById,
+  resultsNewProductInsert,
 }

@@ -14,7 +14,10 @@ const productFindById = {
   "name": "Martelo de Thor"
 };
 
+const productName = 'ProdutoX';
+
 module.exports = {
   products,
   productFindById,
+  productName,
 }
