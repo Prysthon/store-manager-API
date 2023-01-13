@@ -1,1 +1,16 @@
-[]
+[
+  {
+    "_id": "91d46b69-993f-4302-b06d-e95ec4f88139",
+    "colId": "history",
+    "containerId": "",
+    "name": "{{host}}/products",
+    "url": "{{host}}/products",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2023-01-13T19:32:41.623Z",
+    "modified": "2023-01-13T20:25:26.589Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  }
+]
