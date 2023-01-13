@@ -1,0 +1,16 @@
+[
+  {
+    "_id": "8f70dcc9-09e4-42c0-8ffb-74400a5bf222",
+    "name": "Store Manager Project",
+    "default": true,
+    "sortNum": 10000,
+    "created": "2023-01-13T18:20:07.593Z",
+    "modified": "2023-01-13T18:20:07.593Z",
+    "data": [
+      {
+        "name": "host",
+        "value": "http://localhost:3001"
+      }
+    ]
+  }
+]
