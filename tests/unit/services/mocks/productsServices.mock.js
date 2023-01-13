@@ -9,6 +9,12 @@ const products = [
   }
 ];
 
+const productFindById = {
+  "id": 1,
+  "name": "Martelo de Thor"
+};
+
 module.exports = {
   products,
+  productFindById,
 }

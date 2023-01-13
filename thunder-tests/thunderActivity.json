@@ -4,11 +4,11 @@
     "colId": "history",
     "containerId": "",
     "name": "{{host}}/products",
-    "url": "{{host}}/products",
+    "url": "{{host}}/products/999",
     "method": "GET",
     "sortNum": 0,
     "created": "2023-01-13T19:32:41.623Z",
-    "modified": "2023-01-13T20:25:26.589Z",
+    "modified": "2023-01-13T21:19:56.901Z",
     "headers": [],
     "params": [],
     "tests": []
