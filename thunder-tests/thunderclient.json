@@ -12,5 +12,19 @@
     "headers": [],
     "params": [],
     "tests": []
+  },
+  {
+    "_id": "dc938089-c1e3-4163-af53-8f5d3b00570b",
+    "colId": "70d525df-578a-46c7-8cf9-4df11824f7d0",
+    "containerId": "",
+    "name": "R2",
+    "url": "{{host}}/products/",
+    "method": "POST",
+    "sortNum": 20000,
+    "created": "2023-01-13T22:55:45.058Z",
+    "modified": "2023-01-13T22:55:50.173Z",
+    "headers": [],
+    "params": [],
+    "tests": []
   }
 ]

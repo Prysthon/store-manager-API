@@ -53,6 +53,27 @@ describe('Testando Service de Produtos', function () {
     });
   });
 
+  describe('Requisito 04 - verificando possíveis erros ao cadastrar um novo produto', function () {
+    it('Está enviando um produto sem o nome', async function () {
+      // Arrange - não é necessário
+
+      // Act
+      const result = await productsService.insertProduct('');
+      // Assert
+      expect(result.type).to.be.equal('INVALID_REQUEST');
+      expect(result.message).to.be.equal('"name" is required');
+    });
+    it('Está enviando um produto com um nome menor do que 5 caracteres', async function () {
+      // Arrange - não é necessário
+
+      // Act
+      const result = await productsService.insertProduct('ABCD');
+      // Assert
+      expect(result.type).to.be.equal('INVALID_NAME');
+      expect(result.message).to.be.equal('"name" length must be at least 5 characters long');
+    });
+  });
+
   afterEach(function () {
     sinon.restore();
   });

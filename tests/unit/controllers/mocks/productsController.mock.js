@@ -39,9 +39,21 @@ const resultsNewProductInsert = {
   message: newProduct,
 };
 
+const errorWithoutName = {
+  type: 'INVALID_REQUEST',
+  message: '"name" is required',
+}
+
+const errorMinLengthName = {
+  type: 'INVALID_NAME',
+  message: '"name" length must be at least 5 characters long',
+}
+
 module.exports = {
   resultsFindAll,
   resultsFindById,
   errorFindById,
   resultsNewProductInsert,
+  errorWithoutName,
+  errorMinLengthName,
 }
