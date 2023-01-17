@@ -74,6 +74,22 @@ describe('Testando Service de Produtos', function () {
     });
   });
 
+  describe('Requisito 10 - atualizar um produto', function () {
+    it('Está recebendo um objeto com id e novo nome', async function () {
+      // Arrange
+      const expected = {
+        "id": 1,
+        "name": "Martelo do Batman"
+      };
+      sinon.stub(productsModel, 'updateProduct').resolves(expected);
+      // Act
+      const result = await productsService.updateProduct(1, 'Martelo do Batman');
+      // Assert
+      expect(result.type).to.be.equal(null);
+      expect(result.message).to.be.deep.equal(expected);
+    });
+  });
+
   afterEach(function () {
     sinon.restore();
   });
