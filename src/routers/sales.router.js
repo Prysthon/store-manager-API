@@ -9,4 +9,9 @@ router.post(
   salesController.insertSale,
 );
 
+router.get(
+  '/',
+  salesController.findAll,
+);
+
 module.exports = router;

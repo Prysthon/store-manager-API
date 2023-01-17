@@ -10,6 +10,12 @@ const insertSale = async (newSale) => {
   return { type: null, message: { id: result, itemsSold: newSale } };
 };
 
+const findAll = async () => {
+  const result = await salesModel.findAll();
+  return { type: null, message: result };
+};
+
 module.exports = {
   insertSale,
+  findAll,
 };

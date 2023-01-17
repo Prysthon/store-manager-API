@@ -5,7 +5,7 @@ const { salesModel, productsModel } = require('../../../src/models');
 
 const { salesService } = require('./../../../src/services');
 
-const { expectedId, newSale, resultNewSale, errorWithoutProductId, errorWithoutQuantity, errorQuantityLength, productNotFound, productFindById } = require('./mocks/salesServices.mock');
+const { expectedId, newSale, resultNewSale, errorWithoutProductId, errorWithoutQuantity, errorQuantityLength, productNotFound, productFindById, sales } = require('./mocks/salesServices.mock');
 
 describe('Testando Service de Sales', function () {
   describe('Requisito 06 - Cadastrar as sales corretamente', function () {
@@ -74,6 +74,20 @@ describe('Testando Service de Sales', function () {
       // Assert
       expect(result.type).to.be.equal('PRODUCT_NOT_FOUND');
       expect(result.message).to.be.equal('Product not found');
+    });
+  });
+
+  describe('Requisito 08 - Listar vendas', function () {
+    it('Está listando todas as vendas corretamente', async function () {
+      // Arrange
+      sinon.stub(salesModel, 'findAll').resolves(sales);
+
+      // Act
+      const result = await salesService.findAll();
+
+      // Assert
+      expect(result.type).to.be.equal(null);
+      expect(result.message).to.be.equal(sales);
     });
   });
 

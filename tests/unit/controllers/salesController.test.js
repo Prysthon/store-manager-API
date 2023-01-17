@@ -11,7 +11,7 @@ const { salesController } = require('./../../../src/controllers');
 
 const { newSale, correctResponse,
   saleWithoutProductId, correctResponseWithoutId,
-  saleWithoutQuantity, correctResponseWithoutQuantity } = require('./mocks/salesController.mock');
+  saleWithoutQuantity, correctResponseWithoutQuantity, findAllResults } = require('./mocks/salesController.mock');
 
 describe('Testando Controller de Produtos', function () {
   describe('Requisito 06 - Cadastrar uma nova sale', function () {
@@ -74,6 +74,26 @@ describe('Testando Controller de Produtos', function () {
 
       expect(res.status).to.have.been.calledWith(400);
       expect(res.json).to.have.been.calledWith({ message: correctResponseWithoutQuantity.message });
+    });
+  });
+
+  describe('Requisito 08 - Listando as vendas', function () {
+    it('Lista todas as vendas', async function () {
+      // Arrange
+      const res = {};
+      const req = {};
+
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub().returns();
+
+      sinon.stub(salesService, 'findAll').resolves(findAllResults);
+      // Act
+
+      await salesController.findAll(req, res);
+      // Assert
+
+      expect(res.status).to.have.been.calledWith(200);
+      expect(res.json).to.have.been.calledWith({ message: findAllResults.message });
     });
   });
 
