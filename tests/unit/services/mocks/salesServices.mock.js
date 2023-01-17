@@ -66,11 +66,11 @@ const productFindById = {
   "name": "Martelo de Thor"
 };
 
-const sales = [
+const resultSalesModel = [
   {
-    "saleId": 1,
+    "sale_id": 1,
     "date": "2021-09-09T04:54:29.000Z",
-    "productId": 1,
+    "product_id": 1,
     "quantity": 2
   },
   {
@@ -80,6 +80,34 @@ const sales = [
     "quantity": 2
   }
 ]
+
+const sales = [
+  {
+    "saleId": 1,
+    "date": "2021-09-09T04:54:29.000Z",
+    "productId": 1,
+    "quantity": 2
+  },
+  {
+    "saleId": undefined,
+    "date": "2021-09-09T04:54:54.000Z",
+    "productId": undefined,
+    "quantity": 2
+  }
+]
+
+const resultSalesById = [
+  {
+    "date": "2021-09-09T04:54:29.000Z",
+    "productId": 1,
+    "quantity": 2
+  },
+  {
+    "date": "2021-09-09T04:54:54.000Z",
+    "productId": undefined,
+    "quantity": 2
+  }
+];
 
 module.exports = {
   expectedId,
@@ -91,4 +119,6 @@ module.exports = {
   productNotFound,
   productFindById,
   sales,
+  resultSalesById,
+  resultSalesModel,
 }

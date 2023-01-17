@@ -26,7 +26,7 @@ const sales = [
     "productId": 2,
     "quantity": 2
   }
-]
+];
 
 module.exports = {
   generatedSaleId,

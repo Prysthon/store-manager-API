@@ -14,4 +14,9 @@ router.get(
   salesController.findAll,
 );
 
+router.get(
+  '/:id',
+  salesController.findById,
+);
+
 module.exports = router;

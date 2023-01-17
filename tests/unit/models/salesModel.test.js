@@ -12,6 +12,7 @@ describe('Testando Model de Sales', function () {
     it('Está retornando todos os produtos', async function () {
       // Arrange
       sinon.stub(connection, 'execute').resolves([generatedSaleId]);
+      sinon.stub(connection, 'query').resolves([]);
       // Act
       const result = await salesModel.insertSale(newSale);
       // Assert
@@ -27,6 +28,24 @@ describe('Testando Model de Sales', function () {
       const result = await salesModel.findAll();
       // Assert
       expect(result).to.be.deep.equal(sales);
+    });
+    it('Está retornando produto dado o id', async function () {
+      // Arrange
+      sinon.stub(connection, 'execute').resolves([sales]);
+      const expectedId = 1;
+      // Act
+      const result = await salesModel.findById(expectedId);
+      // Assert
+      expect(result).to.be.deep.equal(sales);
+    });
+    it('Está retornando erro ao inserir id inexistente', async function () {
+      // Arrange
+      sinon.stub(connection, 'execute').resolves([[]]);
+      const expectedId = 999;
+      // Act
+      const result = await salesModel.findById(expectedId);
+      // Assert
+      expect(result).to.be.deep.equal([]);
     });
   });
 

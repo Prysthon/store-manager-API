@@ -11,7 +11,7 @@ const { salesController } = require('./../../../src/controllers');
 
 const { newSale, correctResponse,
   saleWithoutProductId, correctResponseWithoutId,
-  saleWithoutQuantity, correctResponseWithoutQuantity, findAllResults } = require('./mocks/salesController.mock');
+  saleWithoutQuantity, correctResponseWithoutQuantity, findAllResults, findById, errorFindById } = require('./mocks/salesController.mock');
 
 describe('Testando Controller de Produtos', function () {
   describe('Requisito 06 - Cadastrar uma nova sale', function () {
@@ -93,7 +93,45 @@ describe('Testando Controller de Produtos', function () {
       // Assert
 
       expect(res.status).to.have.been.calledWith(200);
-      expect(res.json).to.have.been.calledWith({ message: findAllResults.message });
+      expect(res.json).to.have.been.calledWith(findAllResults.message);
+    });
+    it('Está retornando produto dado o id', async function () {
+      // Arrange
+      const res = {};
+      const req = {
+        params: { id: 1 },
+      };
+
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub().returns();
+
+      sinon.stub(salesService, 'findById').resolves(findById);
+      // Act
+
+      await salesController.findById(req, res);
+      // Assert
+
+      expect(res.status).to.have.been.calledWith(200);
+      expect(res.json).to.have.been.calledWith(findById.message);
+    });
+    it('Está retornando erro ao inserir id inválido', async function () {
+      // Arrange
+      const res = {};
+      const req = {
+        params: { id: 999 },
+      };
+
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub().returns();
+
+      sinon.stub(salesService, 'findById').resolves(errorFindById);
+      // Act
+
+      await salesController.findById(req, res);
+      // Assert
+
+      expect(res.status).to.have.been.calledWith(404);
+      expect(res.json).to.have.been.calledWith({ message: errorFindById.message });
     });
   });
 

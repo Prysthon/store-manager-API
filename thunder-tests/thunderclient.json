@@ -4,11 +4,11 @@
     "colId": "70d525df-578a-46c7-8cf9-4df11824f7d0",
     "containerId": "",
     "name": "R1",
-    "url": "{{host}}/products/2",
+    "url": "{{host}}/products/999",
     "method": "GET",
     "sortNum": 10000,
     "created": "2023-01-13T21:33:15.136Z",
-    "modified": "2023-01-16T22:47:31.924Z",
+    "modified": "2023-01-17T17:08:00.055Z",
     "headers": [],
     "params": [],
     "tests": []
@@ -44,6 +44,20 @@
       "raw": "[\n  {\n    \"productId\": 1,\n    \"quantity\": 5\n  },\n  {\n    \"productId\": 2,\n    \"quantity\": 100\n  }\n]",
       "form": []
     },
+    "tests": []
+  },
+  {
+    "_id": "ebeae78e-132e-4fe3-a332-cb56064751ab",
+    "colId": "70d525df-578a-46c7-8cf9-4df11824f7d0",
+    "containerId": "",
+    "name": "R8",
+    "url": "{{host}}/sales/5",
+    "method": "GET",
+    "sortNum": 40000,
+    "created": "2023-01-17T02:25:46.770Z",
+    "modified": "2023-01-17T17:04:58.278Z",
+    "headers": [],
+    "params": [],
     "tests": []
   }
 ]

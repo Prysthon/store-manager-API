@@ -12,10 +12,22 @@ const insertSale = async (newSale) => {
 
 const findAll = async () => {
   const result = await salesModel.findAll();
-  return { type: null, message: result };
+  const filterResult = result
+    .map(({ sale_id: saleId, date, product_id: pr, quantity }) =>
+      ({ saleId, date, productId: pr, quantity }));
+  return { type: null, message: filterResult };
+};
+
+const findById = async (id) => {
+  const result = await salesModel.findById(id);
+  if (result.length === 0) return { type: 'PRODUCT_NOT_FOUND', message: 'Sale not found' };
+  const filterResult = result
+    .map(({ date, product_id: pr, quantity }) => ({ date, productId: pr, quantity }));
+  return { type: null, message: filterResult };
 };
 
 module.exports = {
   insertSale,
   findAll,
+  findById,
 };
