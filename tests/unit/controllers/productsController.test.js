@@ -141,6 +141,33 @@ describe('Testando Controller de Produtos', function () {
     });
   });
 
+  describe('Requisito 08 - Atualizando um produto', function () {
+    it('está recebendo um objeto e retornando status 200 com objeto nome e id', async function () {
+      // Arrange
+      const res = {};
+      const req = {
+        params: { id: 1 },
+        body: {
+          name: 'Martelo do Batman',
+        },
+      };
+      const response = {
+        type: null,
+        message: {
+          "id": 1,
+          "name": "Martelo do Batman"
+        }};
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub().returns();
+      sinon.stub(productsService, 'updateProduct').resolves(response);
+      // Act
+      await productsController.updateProduct(req, res);
+      // Assert
+      expect(res.status).to.have.been.calledWith(200);
+      expect(res.json).to.have.been.calledWith(response.message);
+    });
+  });
+
   afterEach(function () {
     sinon.restore();
   });
