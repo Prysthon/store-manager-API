@@ -83,12 +83,14 @@ describe('Testando Service de Produtos', function () {
         "id": 1,
         "name": "Martelo do Batman"
       };
-      sinon.stub(productsModel, 'updateProduct').resolves(expected);
+      sinon.stub(schema, 'validateName').resolves(expected);
+      sinon.stub(productsModel, 'findById').resolves(expected);
+      sinon.stub(productsModel, 'updateProduct').resolves({type: null, message: expected});
       // Act
       const result = await productsService.updateProduct(1, 'Martelo do Batman');
       // Assert
       expect(result.type).to.be.equal(null);
-      expect(result.message).to.be.deep.equal(expected);
+      expect(result.message.message).to.be.deep.equal(expected);
     });
     it('Está retornando um erro ao procurar por um produto inexistente', async function () {
       // Arrange
@@ -96,8 +98,8 @@ describe('Testando Service de Produtos', function () {
         type: 'PRODUCT_NOT_FOUND',
         message: "Product not found"
       };
-      sinon.stub(productsModel, 'updateProduct').resolves(expected);
       sinon.stub(productsModel, 'findById').resolves(undefined);
+      sinon.stub(productsModel, 'updateProduct').resolves(expected);
       // Act
       const result = await productsService.updateProduct(999, 'Martelo do Batman');
       // Assert
@@ -116,6 +118,29 @@ describe('Testando Service de Produtos', function () {
       // Assert
       expect(result.type).to.be.equal('INVALID_REQUEST');
       expect(result.message).to.be.deep.equal('"name" is required');
+    });
+  });
+
+  describe('Requisito 12 - deletando um produto', function () {
+    it('Está recebendo número de linhas afetadas e responde com um type null e message null', async function () {
+      // Arrange
+      sinon.stub(productsModel, 'findById').resolves([1, 2, 3]);
+      sinon.stub(productsModel, 'deleteProduct').resolves(1);
+      // Act
+      const result = await productsService.deleteProduct(1);
+      // Assert
+      expect(result.type).to.be.equal(null);
+      expect(result.message).to.be.equal('');
+    });
+    it('Está recebendo um id inexistente e respondendo com um erro', async function () {
+      // Arrange
+      sinon.stub(productsModel, 'findById').resolves(undefined);
+      // const response = { type: 'PRODUCT_NOT_FOUND', message: 'Product not found' }
+      // Act
+      const result = await productsService.deleteProduct(999);
+      // Assert
+      expect(result.type).to.be.equal('PRODUCT_NOT_FOUND');
+      expect(result.message).to.be.equal('Product not found');
     });
   });
 

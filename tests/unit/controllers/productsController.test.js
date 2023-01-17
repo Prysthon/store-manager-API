@@ -189,6 +189,48 @@ describe('Testando Controller de Produtos', function () {
     });
   });
 
+  describe('Requisito 12 - deletando um produto', function () {
+    it('está recebendo um objeto e retornando status 204', async function () {
+      // Arrange
+      const res = {};
+      const req = {
+        params: { id: 1 },
+      };
+      const result = {
+        type: null, 
+        message: '',
+      }
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub().returns();
+      sinon.stub(productsService, 'deleteProduct').resolves(result);
+      // Act
+      await productsController.deleteProduct(req, res);
+      // Assert
+      expect(res.status).to.have.been.calledWith(204);
+      expect(res.json).to.have.been.calledWith();
+    });
+    it('está recebendo um objeto e retornando status 204', async function () {
+      // Arrange
+      const res = {};
+      const req = {
+        params: { id: 999 },
+      };
+      const result = {
+        type: 'PRODUCT_NOT_FOUND',
+        message: 'Product not found',
+      }
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub().returns();
+      sinon.stub(productsService, 'deleteProduct').resolves(result);
+      // Act
+      await productsController.deleteProduct(req, res);
+      // Assert
+      expect(res.status).to.have.been.calledWith(404);
+      expect(res.json).to.have.been.calledWith({ message: 'Product not found' });
+    });
+  });
+
+
   afterEach(function () {
     sinon.restore();
   });

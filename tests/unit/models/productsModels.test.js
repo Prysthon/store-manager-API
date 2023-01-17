@@ -61,6 +61,18 @@ describe('Testando Model de Produtos', function () {
     });
   });
 
+  describe('Requisito 12 - deleta um produto', function () {
+    it('Está deletando um produto e retornando a quantidade de linhas afetadas', async function () {
+      // Arrange
+      sinon.stub(connection, 'execute').resolves([{ affectedRows: 1 }]);
+      const id = 1;
+      // Act
+      const result = await productsModel.deleteProduct(id);
+      // Assert
+      expect(result).to.be.equal(1);
+    });
+  });
+
   afterEach(function () {
     sinon.restore();
   });
