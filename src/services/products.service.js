@@ -24,7 +24,7 @@ const insertProduct = async (productName) => {
 };
 
 const updateProduct = async (id, name) => {
-  const error = schema.validateName(name);
+  const error = await schema.validateName(name);
   if (error.type) return { type: error.type, message: error.message };
   const validateProductExists = await findById(id);
   if (validateProductExists.type) {

@@ -5,6 +5,8 @@ const { productsModel } = require('../../../src/models');
 
 const { productsService } = require('./../../../src/services');
 
+const schema = require('./../../../src/services/validations/validationsInputValues');
+
 const { products, productFindById, productName } = require('./mocks/productsServices.mock');
 
 describe('Testando Service de Produtos', function () {
@@ -87,6 +89,33 @@ describe('Testando Service de Produtos', function () {
       // Assert
       expect(result.type).to.be.equal(null);
       expect(result.message).to.be.deep.equal(expected);
+    });
+    it('Está retornando um erro ao procurar por um produto inexistente', async function () {
+      // Arrange
+      const expected = {
+        type: 'PRODUCT_NOT_FOUND',
+        message: "Product not found"
+      };
+      sinon.stub(productsModel, 'updateProduct').resolves(expected);
+      sinon.stub(productsModel, 'findById').resolves(undefined);
+      // Act
+      const result = await productsService.updateProduct(999, 'Martelo do Batman');
+      // Assert
+      expect(result.type).to.be.equal('PRODUCT_NOT_FOUND');
+      expect(result.message).to.be.deep.equal("Product not found");
+    });
+    it('Está retornando um erro ao não inserir o nome', async function () {
+      // Arrange
+      const expected = {
+        type: 'INVALID_REQUEST',
+        message: '"name" is required'
+      };
+      sinon.stub(schema, 'validateName').resolves(expected);
+      // Act
+      const result = await productsService.updateProduct(999);
+      // Assert
+      expect(result.type).to.be.equal('INVALID_REQUEST');
+      expect(result.message).to.be.deep.equal('"name" is required');
     });
   });
 
