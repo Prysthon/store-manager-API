@@ -4,41 +4,16 @@
     "colId": "history",
     "containerId": "",
     "name": "{{host}}/products",
-    "url": "{{host}}/products/",
-    "method": "GET",
-    "sortNum": 0,
-    "created": "2023-01-13T19:32:41.623Z",
-    "modified": "2023-01-13T22:46:00.035Z",
-    "headers": [],
-    "params": [],
-    "tests": []
-  },
-  {
-    "_id": "dbb7acec-2c34-4fd4-b3f6-3ae3906f0764",
-    "colId": "history",
-    "containerId": "",
-    "name": "{{host}}/products/",
-    "url": "{{host}}/products/",
+    "url": "{{host}}/sales",
     "method": "POST",
     "sortNum": 0,
-    "created": "2023-01-13T22:45:04.678Z",
-    "modified": "2023-01-13T22:45:04.678Z",
-    "headers": [
-      {
-        "name": "Accept",
-        "value": "*/*",
-        "isDisabled": true
-      },
-      {
-        "name": "User-Agent",
-        "value": "Thunder Client (https://www.thunderclient.com)",
-        "isDisabled": true
-      }
-    ],
+    "created": "2023-01-13T19:32:41.623Z",
+    "modified": "2023-01-16T22:43:54.171Z",
+    "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"name\": \"ProdutoX\"\n}",
+      "raw": "[\n  {\n    \"productId\": 1,\n    \"quantity\": 1\n  },\n  {\n    \"productId\": 2,\n    \"quantity\": 5\n  }\n]",
       "form": []
     },
     "tests": []
