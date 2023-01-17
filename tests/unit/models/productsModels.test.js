@@ -48,6 +48,19 @@ describe('Testando Model de Produtos', function () {
     });
   });
 
+  describe('Requisito 10 - atualizar um produto', function () {
+    it('Está atualizando um produto', async function () {
+      // Arrange
+      sinon.stub(connection, 'execute').resolves(null);
+      const id = 1;
+      const name = 'Martelo do Batman';
+      // Act
+      const result = await productsModel.updateProduct(id, name);
+      // Assert
+      expect(result).to.be.deep.equal({ id, name });
+    });
+  });
+
   afterEach(function () {
     sinon.restore();
   });
