@@ -109,6 +109,29 @@ describe('Testando Service de Sales', function () {
     });
   });
 
+  describe('Requisito 14 - Deletar vendas', function () {
+    it('Está recebendo um id e respondendo com type null e message ""', async function () {
+      // Arrange
+      sinon.stub(salesModel, 'findById').resolves(resultSalesModel);
+      sinon.stub(salesModel, 'deleteSale').resolves(1);
+      // Act
+      const result = await salesService.deleteSale();
+
+      // Assert
+      expect(result.type).to.be.equal(null);
+      expect(result.message).to.be.deep.equal('');
+    });
+    it('ao receber um id inexistente retorna um erro', async function () {
+      // Arrange
+      sinon.stub(salesModel, 'findById').resolves([]);
+      // Act
+      const result = await salesService.deleteSale(999);
+      // Assert
+      expect(result.type).to.be.equal('PRODUCT_NOT_FOUND');
+      expect(result.message).to.be.deep.equal('Sale not found');
+    });
+  });
+
   afterEach(function () {
     sinon.restore();
   });

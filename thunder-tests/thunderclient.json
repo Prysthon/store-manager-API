@@ -97,5 +97,19 @@
     "headers": [],
     "params": [],
     "tests": []
+  },
+  {
+    "_id": "999edb18-80d1-443e-9e12-6c0472bfc0cf",
+    "colId": "70d525df-578a-46c7-8cf9-4df11824f7d0",
+    "containerId": "",
+    "name": "R14",
+    "url": "{{host}}/sales/999",
+    "method": "DELETE",
+    "sortNum": 70000,
+    "created": "2023-01-18T18:22:44.388Z",
+    "modified": "2023-01-18T18:23:46.526Z",
+    "headers": [],
+    "params": [],
+    "tests": []
   }
 ]

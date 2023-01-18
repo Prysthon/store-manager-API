@@ -135,6 +135,41 @@ describe('Testando Controller de Produtos', function () {
     });
   });
 
+  describe('Requisito 14 - Deletando as vendas', function () {
+    it('Recebendo type null e retornando status 204', async function () {
+      // Arrange
+      const res = {};
+      const req = {
+        params: { id: 1 }
+      };
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub().returns();
+      sinon.stub(salesService, 'deleteSale').resolves({ type: null, message: '' });
+      // Act
+      await salesController.deleteSale(req, res);
+      // Assert
+
+      expect(res.status).to.have.been.calledWith(204);
+      expect(res.json).to.have.been.calledWith('');
+    });
+    it('Recebendo type PRODUCT_NOT_FOUND e retornando status 404 com message: "Sale not found"', async function () {
+      // Arrange
+      const res = {};
+      const req = {
+        params: { id: 999 }
+      };
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub().returns();
+      sinon.stub(salesService, 'deleteSale').resolves({ type: 'PRODUCT_NOT_FOUND', message: 'Sale not found' });
+      // Act
+      await salesController.deleteSale(req, res);
+      // Assert
+
+      expect(res.status).to.have.been.calledWith(404);
+      expect(res.json).to.have.been.calledWith({ message: 'Sale not found' });
+    });
+  });
+
   afterEach(function () {
     sinon.restore();
   });

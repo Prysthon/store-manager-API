@@ -49,6 +49,18 @@ describe('Testando Model de Sales', function () {
     });
   });
 
+  describe('Requisito 14 - Deletando vendas', function () {
+    it('Está delentando uma venda dado o Id', async function () {
+      // Arrange
+      const expectedId = 1
+      sinon.stub(connection, 'execute').resolves([]);
+      // Act
+      const result = await salesModel.deleteSale(expectedId);
+      // Assert
+      expect(result).to.be.equal(expectedId);
+    });
+  });
+
   afterEach(function () {
     sinon.restore();
   });

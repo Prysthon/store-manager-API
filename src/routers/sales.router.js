@@ -19,4 +19,9 @@ router.get(
   salesController.findById,
 );
 
+router.delete(
+  '/:id',
+  salesController.deleteSale,
+);
+
 module.exports = router;
