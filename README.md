@@ -7,7 +7,7 @@ Neste projeto foi **desenvolvido uma API utilizando a arquitetura MSC** para um 
 <!-- Listar 2 a 3 habilidades desenvolvidas -->
 - Desenvolver uma API RESTful de um CRUD (Create, Read, Update e Delete);
 - Utilizar a arquitetura MSC (Model, Service, Controller) para organizar o código;
-- Criar testes unitários para APIs REST.
+- Criar testes unitários para APIs REST aplicando o conceito de TDD (Test-driven development).
 
 ## 🤖 Tecnologias
 > Este projeto foi desenvolvido com as seguintes tecnologias:
