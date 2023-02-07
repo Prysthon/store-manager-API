@@ -25,11 +25,11 @@ Neste projeto foi **desenvolvido uma API utilizando a arquitetura MSC** para um 
     ```
         docker-compose up -d --build
     ```
-    1. Use o comando: 
+    2. Use o comando: 
     ```
         docker exec -it blogs_api bash
     ```
-      1. Dentro do container, instale as dependências: 
+    3. Dentro do container, instale as dependências: 
     ```
         npm install
     ```
@@ -39,7 +39,7 @@ Neste projeto foi **desenvolvido uma API utilizando a arquitetura MSC** para um 
     ```
         npm run restore
     ```
-    1. Inicie a aplicação:
+    2. Inicie a aplicação:
     ```
         npm start
     ```
